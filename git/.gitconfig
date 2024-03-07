@@ -1,0 +1,16 @@
+[user]
+	name = Allan Amaral
+	email = allanmaralr@gmail.com
+[github]
+    user    = allanmaral
+[init]
+    defaultBranch = main
+[alias]
+    a = !git add
+    s = !git status -s
+    c = !git commit -m
+    ca = !git commit --amend -m
+    l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'
+    ps = !git push
+    pl = !git pull
+    d = !git diff
