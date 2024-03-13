@@ -22,7 +22,7 @@ SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 
-plugins=(git)
+plugins=(git asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -76,9 +76,12 @@ export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 # -------------------------------- #
 # Configure Go
 # -------------------------------- #
-export GOROOT="/usr/local/go"
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
+# export GOROOT="/usr/local/go"
+# export GOPATH=$HOME/go
+# export PATH=$GOPATH/bin:$PATH
+. ~/.asdf/plugins/golang/set-env.zsh
+GOPATH="$HOME/go/$(go env GOVERSION)"
+alias go-reshim='asdf reshim golang && mkdir -p ~/go/$(go env GOVERSION) && export GOPATH="$HOME/go/$(go env GOVERSION)"'
 
 
 # -------------------------------- #
