@@ -1,8 +1,8 @@
 [user]
-	name = Allan Amaral
-	email = allanmaralr@gmail.com
+    name = Allan Amaral
+    email = allanmaralr@gmail.com
 [github]
-    user    = allanmaral
+    user = allanmaral
 [init]
     defaultBranch = main
 [alias]
