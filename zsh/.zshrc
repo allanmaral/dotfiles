@@ -58,16 +58,29 @@ zinit light zsh-users/zsh-completions
 # -------------------------------- #
 # Setup Node
 # -------------------------------- #
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 
+# pnpm
+export PNPM_HOME="/Users/allan/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# -------------------------------- #
+# Configure Deno
+# -------------------------------- #
+
+if [[ ":$FPATH:" != *":/Users/allan/.zsh/completions:"* ]]; then export FPATH="/Users/allan/.zsh/completions:$FPATH"; fi
+. "/Users/allan/.deno/env"
+
 # -------------------------------- #
 # Configure Ruby Gems
 # -------------------------------- #
-
 export PATH=/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/3.0.0/bin:$PATH
 export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
@@ -79,14 +92,96 @@ export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 # export GOROOT="/usr/local/go"
 # export GOPATH=$HOME/go
 # export PATH=$GOPATH/bin:$PATH
-. ~/.asdf/plugins/golang/set-env.zsh
-GOPATH="$HOME/go/$(go env GOVERSION)"
-alias go-reshim='asdf reshim golang && mkdir -p ~/go/$(go env GOVERSION) && export GOPATH="$HOME/go/$(go env GOVERSION)"'
+export GOROOT="$(dirname $(dirname $(asdf which go)))"
+export GOPATH="$HOME/go/$(go env GOVERSION)"
+export PATH=$GOPATH/bin:$PATH
 
+function go-reshim() {
+    asdf reshim golang
+    mkdir -p ~/go/$(go env GOVERSION)
+    export GOROOT="$(dirname $(dirname $(asdf which go)))"
+    export GOPATH="$HOME/go/$(go env GOVERSION)"
+    export PATH=$GOPATH/bin:$PATH
+}
+
+# -------------------------------- #
+# LLVM
+# -------------------------------- #
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+# export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
+
+# -------------------------------- #
+# Python
+# -------------------------------- #
+
+export PYENV_ROOT="$HOME/.pyenv"
+if [[ -d $PYENV_ROOT/bin ]]; then
+    export PATH="$PYENV_ROOT/bin:$PATH"
+fi
+eval "$(pyenv init -)"
 
 # -------------------------------- #
 # Alias
 # -------------------------------- #
 
-# alias vim=nvim
+alias vim=nvim
 
+# Go to App Masters projects
+function cdam() {
+    cd ~/Documents/Projects/app-masters
+}
+
+# Ask politely to stop a process
+function please_stop() {
+    lsof -t -i "tcp:$1" | xargs sudo kill -15
+}
+
+# Terminates a process with extreme prejudice
+function death_to() {
+    lsof -t -i "tcp:$1" | xargs sudo kill -9
+}
+
+# Create or attach to a session
+function tmn() {
+    tmux new -A -s "$1"
+}
+
+function tma() {
+    if [ -z "${1}" ]; then
+        tmux attach
+    else
+        tmux attach -t "$1"
+    fi
+}
+
+# Avoid "to many files open" error
+ulimit -n 10240
+
+
+# -------------------------------- #
+# Editors Shortcuts
+# -------------------------------- #
+
+function goland() {
+    open -na "GoLand.app" --args "$@"
+}
+
+function rustrover() {
+    open -na "RustRover.app" --args "$@"
+}
+
+
+# -------------------------------- #
+# Java / sdkman
+# -------------------------------- #
+
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export ANDROID_HOME=~/.android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools

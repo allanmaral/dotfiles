@@ -11,6 +11,10 @@
     c = !git commit -m
     ca = !git commit --amend -m
     l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'
+    lg = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr' --graph
+    lga = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr' --graph --all
     ps = !git push
     pl = !git pull
     d = !git diff
+[commit]
+	template = /Users/allan/.gitmessage
