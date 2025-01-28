@@ -17,4 +17,7 @@
     pl = !git pull
     d = !git diff
 [commit]
-	template = /Users/allan/.gitmessage
+    template = ~/.gitconf/.gitmessage
+[core]
+    excludesfile = ~/.gitconf/.gitignore
+    hooksPath = ~/.gitconf/hooks

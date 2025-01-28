@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+~/.gitconf/hooks/run-local-hook commit-msg "$1"
+
+# Remove comment lines from the commit message
+sed -i '.bak' '/^[[:space:]]*#.*$/d' "$1"
+
