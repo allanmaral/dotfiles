@@ -169,6 +169,7 @@ return {
             },
           },
         },
+        terraformls = {},
       }
 
       require('mason').setup()
@@ -178,6 +179,19 @@ return {
         'stylua', -- Used to format Lua code
         'prettierd',
       })
+      -- local skip_mason = { 'zls' }
+      --
+      -- local skip_set = {}
+      -- for _, item in ipairs(skip_mason) do
+      --   skip_set[item] = true
+      -- end
+      -- for i, _ in ipairs(ensure_installed) do
+      --   if skip_set[ensure_installed[i]] then
+      --     table.remove(ensure_installed, i)
+      --   end
+      -- end
+
+      local lspconfig = require 'lspconfig'
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
       require('mason-lspconfig').setup {
         handlers = {
@@ -191,6 +205,11 @@ return {
             require('lspconfig')[server_name].setup(server)
           end,
         },
+      }
+
+      lspconfig.zls.setup {
+        capabilities = lspconfig_defaults.capabilities,
+        settings = { zls = {} },
       }
     end,
   },

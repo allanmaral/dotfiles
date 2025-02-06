@@ -19,6 +19,9 @@ brew install tmux
 brew install neovim
 brew install sqlite
 brew install pyenv
+brew install llvm
+brew install lld
+brew install ripgrep
 
 # Install Oh My Zsh
 if ! [ -f $HOME/.oh-my-zsh/oh-my-zsh.sh ]; then
@@ -47,12 +50,20 @@ if ! command -v nvm &> /dev/null; then
   PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash'
 fi
 
-# Install Deno
+# Install deno
 if ! command -v deno &> /dev/null; then
     asdf plugin-add deno https://github.com/asdf-community/asdf-deno.git
     asdf install deno latest
     asdf global deno latest
     asdf local deno latest
+fi
+
+# Install node
+if ! command -v node &> /dev/null; then
+    asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+    asdf install nodejs 22.13.1
+    asdf global deno 22.13.1
+    asdf local deno 22.13.1
 fi
 
 # Install go
@@ -63,8 +74,16 @@ if ! command -v go &> /dev/null; then
     asdf shell golang 1.23.5
 fi
 
+# Install zig
+if ! command -v zig &> /dev/null; then
+    asdf plugin add zig https://github.com/zigcc/asdf-zig.git
+    asdf install zig 0.13.0
+    asdf global zig 0.13.0
+    asdf shell zig 0.13.0
+fi
+
 # Install Rust
-if ! coomand -v cargo &> /dev/null; then
+if ! command -v cargo &> /dev/null; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
@@ -75,3 +94,4 @@ stow git
 stow zsh
 stow tmux
 stow nvim
+stow ghostty

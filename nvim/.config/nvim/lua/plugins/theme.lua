@@ -1,3 +1,11 @@
+vim.api.nvim_create_user_command('ThemeDay', function()
+  vim.cmd.colorscheme 'catppuccin-latte'
+end, {})
+
+vim.api.nvim_create_user_command('ThemeNight', function()
+  vim.cmd.colorscheme 'tokyonight-storm'
+end, {})
+
 return {
   {
     'folke/tokyonight.nvim',
@@ -5,7 +13,7 @@ return {
     priority = 1001,
     opts = {},
     config = function()
-      -- vim.cmd.colorscheme 'tokyonight'
+      vim.cmd.colorscheme 'tokyonight-storm'
     end,
   },
   {
