@@ -1,0 +1,146 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-\\": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      // Put file explorer bindings here
+      "\\": "workspace::ToggleLeftDock",
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "a": "project_panel::NewFile",
+      "c": "project_panel::Copy",
+      "shift-c": "project_panel::Cut",
+      "p": "project_panel::Paste"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // Put key bindings here if you want them to work in normal & visual mode.
+      "shift-k": "editor::Hover",
+      "space c a": "editor::ToggleCodeActions",
+      "space c f": "editor::Format",
+      "space r n": "editor::Rename",
+      "space v": "editor::GoToDefinitionSplit",
+      "g r": "editor::FindAllReferences",
+      "space f": "editor::Format",
+
+      "space s f": "file_finder::Toggle",
+      "space s g": "pane::DeploySearch",
+      "space s s": "outline::Toggle",
+
+      "space q": "diagnostics::Deploy",
+      "[ q": "editor::GoToPreviousDiagnostic",
+      "] q": "editor::GoToDiagnostic",
+
+      "[ g": "editor::GoToPreviousHunk",
+      "] g": "editor::GoToHunk",
+
+      "\\": "pane::RevealInProjectPanel",
+
+      "space d": "vim::SelectNext",
+      "space shift-d": "editor::SelectAllMatches",
+
+      "space space": "tab_switcher::Toggle",
+      "space x": "pane::CloseActiveItem",
+      "tab": "pane::ActivateNextItem",
+      "shift-tab": "pane::ActivatePreviousItem",
+
+      "alt-k": "editor::MoveLineUp",
+      "alt-j": "editor::MoveLineDown",
+      "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
+      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+
+      "ctrl-space z": "workspace::ToggleZoom"
+    }
+  },
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      "ctrl-?": "workspace::ToggleRightDock"
+      // "shift-y": ["workspace::SendKeystrokes", "y $"] // Use neovim's yank behavior: yank to end of line.
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore" // In insert mode, make jk escape to normal mode.
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimAwaiting && !menu",
+    "bindings": {
+      // visual, visual line & visual block modes
+      "shift-k": "editor::MoveLineUp",
+      "shift-j": "editor::MoveLineDown"
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      // Put key bindings here (in addition to the context above) if you want them to
+      // work when no editor exists.
+      "space s f": "file_finder::Toggle",
+      "space s g": "pane::DeploySearch",
+      "\\": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "TabSwitcher",
+    "bindings": {
+      "ctrl-y": "menu::Confirm"
+    }
+  },
+  {
+    "context": "FileFinder > Picker > Editor",
+    "bindings": {
+      "ctrl-y": "menu::Confirm"
+    }
+  },
+  {
+    "context": "ProjectSearchBar",
+    "bindings": {
+      "escape escape": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      // "ctrl-tab": "pane::ActivateNextItem",
+      // "ctrl-shift-tab": "pane::ActivatePrevItem"
+    }
+  },
+
+  {
+    "context": "AgentPanel > MessageEditor > Editor",
+    "bindings": {
+      "escape": "workspace::ToggleRightDock",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-?": "workspace::ToggleRightDock"
+    }
+  }
+]

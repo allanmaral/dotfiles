@@ -95,3 +95,4 @@ stow zsh
 stow tmux
 stow nvim
 stow ghostty
+stow zed
