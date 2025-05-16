@@ -21,3 +21,4 @@
 [core]
     excludesfile = ~/.gitconf/.gitignore
     hooksPath = ~/.gitconf/hooks
+    editor = nvim
