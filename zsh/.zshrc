@@ -80,10 +80,11 @@ export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
 
 # -------------------------------- #
-# configure go
+# Configure go
 # -------------------------------- #
-export GOROOT="$HOME/.asdf/installs/golang/1.23.5/go"
-export GOPATH="$HOME/go/go1.23.5"
+export DEFAULT_GOVERSION="1.25.0"
+export GOROOT="$HOME/.asdf/installs/golang/$DEFAULT_GOVERSION/go"
+export GOPATH="$HOME/go/go$DEFAULT_GOVERSION"
 export PATH=$GOPATH/bin:$PATH
 
 function go-reshim() {
@@ -91,7 +92,7 @@ function go-reshim() {
     mkdir -p ~/go/$(go env GOVERSION)
     export GOROOT="$(dirname $(dirname $(asdf which go)))"
     export GOPATH="$HOME/go/$(go env GOVERSION)"
-    # export PATH=$GOPATH/bin:$PATH
+    export PATH=$(echo $PATH | sed "s#$HOME/go/go[0-9]\.[0-9]\{1,5\}\.[0-9]\{1,5\}/bin#$GOPATH/bin#") # Replace the current go version in path
 }
 
 # -------------------------------- #
@@ -162,9 +163,11 @@ ulimit -n 10240
 
 # export SDKMAN_DIR="$HOME/.sdkman"
 # [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-# 
+#
 # export ANDROID_HOME=~/.android/sdk
 # export PATH=$PATH:$ANDROID_HOME/emulator
 # export PATH=$PATH:$ANDROID_HOME/tools
 # export PATH=$PATH:$ANDROID_HOME/tools/bin
 # export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export PATH="$HOME/.local/bin:$PATH"
