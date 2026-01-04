@@ -1,3 +1,7 @@
+-- [[ Global Keymaps ]]
+-- Non-plugin specific keymaps
+-- See `:help vim.keymap.set()`
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -49,23 +53,12 @@ vim.keymap.set('n', 'E', '$', { desc = 'Move to the [E]nd of the line' })
 vim.keymap.set('n', 'B', '0', { desc = 'Move to the [B]egining of the line' })
 
 -- Buffers
--- vim.keymap.set('n', '<tab>', ':bnext<enter>', { desc = 'Next Buffer' })
--- vim.keymap.set('n', '<S-tab>', ':bprev<enter>', { desc = 'Previous Buffer' })
 vim.keymap.set('n', '<leader>x', ':bdelete<enter>', { desc = 'Close Buffer' })
+
+-- Splits
+vim.keymap.set('n', '<leader>s-', ':split<enter>', { desc = '[S]plit [H]orizontally' })
+vim.keymap.set('n', '<leader>s\\', ':vsplit<enter>', { desc = '[S]plit [V]ertically' })
+vim.keymap.set('n', '<leader>sx', ':close<enter>', { desc = 'Close [S]plit' })
 
 -- Project View
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = '[P]roject [V]iew' })
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})

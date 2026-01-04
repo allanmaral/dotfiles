@@ -1,3 +1,5 @@
+-- File explorer
+
 return {
   'kyazdani42/nvim-tree.lua',
   dependencies = {
