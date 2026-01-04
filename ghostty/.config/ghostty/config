@@ -1,16 +1,20 @@
 font-size = 16
-theme = dark:tokyonight-storm,light:catppuccin-latte
+theme = dark:TokyoNight,light:Catppuccin Latte
+# theme = dark:Monokai Pro,light:Monokai Pro Light
 cursor-style = block
 adjust-cell-height = 10%
 mouse-hide-while-typing = true
-# macos-titlebar-style = transparent 
-macos-titlebar-style = hidden
+macos-icon = blueprint
+macos-titlebar-style = transparent 
+# macos-titlebar-style = hidden
+title = " "
+macos-titlebar-proxy-icon = hidden
 window-theme = auto
 macos-option-as-alt = true
 window-padding-balance = true
 window-save-state = always
 window-colorspace = "display-p3"
-font-family = "Liga SFMono Nerd Font"
+font-family = "TX02 Nerd Font"
 
 # Keybindings for panes/splits
 keybind = ctrl+a>\=new_split:right
