@@ -18,10 +18,23 @@ return {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
+      -- Merge global and local lsp configs
+      'folke/neoconf.nvim',
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
       -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-      { 'mason-org/mason.nvim', opts = {} },
+      {
+        'mason-org/mason.nvim',
+        opts = {
+          ui = {
+            icons = {
+              package_installed = '✓',
+              package_pending = '➜',
+              package_uninstalled = '✗',
+            },
+          },
+        },
+      },
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -32,6 +45,8 @@ return {
       'saghen/blink.cmp',
     },
     config = function()
+      require('neoconf').setup {}
+
       -- Brief aside: **What is LSP?**
       --
       -- LSP is an initialism you've probably heard, but might not understand what it is.
@@ -248,7 +263,9 @@ return {
           },
         },
         terraformls = {},
+        templ = {},
 
+        vtsls = {},
         tailwindcss = {},
         eslint = {
           filetypes = {
